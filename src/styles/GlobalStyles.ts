@@ -31,5 +31,9 @@ body{
 }
 body,textarea,button,input{
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  border:none;
+}
+button{
+  cursor: pointer;
 }
 `;
