@@ -75,12 +75,13 @@ export const TableContainer = styled.ul`
     line-height: 160%;
     color: ${({ theme }) => theme["gray-300"]};
     h2 {
-      flex-grow: 2;
+      /* flex-grow: 2; */
+      width: 50%;
       font-size: 16px;
       font-weight: 400;
     }
     span {
-      flex-grow: 1;
+      flex: 1;
       &:last-child {
         flex-grow: 0;
       }
@@ -88,10 +89,10 @@ export const TableContainer = styled.ul`
   }
 `;
 interface PriceHighLightProps {
-  status?: "green" | "red";
+  status?: "income" | "outcome";
 }
 
 export const PriceHighLight = styled.span<PriceHighLightProps>`
   color: ${({ theme, status }) =>
-    status === "green" ? theme["green-300"] : theme["red-300"]};
+    status === "income" ? theme["green-300"] : theme["red-300"]};
 `;

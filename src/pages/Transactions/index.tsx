@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import {
@@ -7,7 +8,31 @@ import {
   TransactionsContainer,
 } from "./styles";
 
+interface TransactionsProps {
+  id: number;
+  description: string;
+  type: "income" | "outcome";
+  price: string;
+  category: string;
+  createdAt: string;
+}
 export const Transactions = () => {
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:3000/transactions");
+    const data = await response.json();
+    setTrasactions(data);
+  };
+  useEffect(() => {
+    fetchData();
+    // fetch("http://localhost:3000/transactions")
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     console.log(json);
+    //     setTrasactions(json);
+    //   });
+  }, []);
+
+  const [transactions, setTrasactions] = useState<TransactionsProps[]>([]);
   return (
     <TransactionsContainer>
       <Header />
@@ -40,24 +65,27 @@ export const Transactions = () => {
           </button>
         </SearchForm>
         <TableContainer className="grid">
-          <li className="item">
+          {transactions.map((transaction) => {
+            return (
+              <li key={transaction.id} className="item">
+                <h2>{transaction.description}</h2>
+                <PriceHighLight status={transaction.type}>
+                  {transaction.type === "outcome" && "- "}
+                  {transaction.price}
+                </PriceHighLight>
+                <span>{transaction.category}</span>
+                <span>
+                  {new Date(transaction.createdAt).toLocaleDateString()}
+                </span>
+              </li>
+            );
+          })}
+          {/* <li className="item">
             <h2>Desenvolvimento de site</h2>
             <PriceHighLight status="red">R$ 12.000,00</PriceHighLight>
             <span>Venda</span>
             <span>13/04/2022</span>
-          </li>
-          <li className="item">
-            <h2>Desenvolvimento de site</h2>
-            <PriceHighLight status="green">R$ 12.000,00</PriceHighLight>
-            <span>Venda</span>
-            <span>13/04/2022</span>
-          </li>
-          <li className="item">
-            <h2>Desenvolvimento de site</h2>
-            <PriceHighLight>R$ 12.000,00</PriceHighLight>
-            <span>Venda</span>
-            <span>13/04/2022</span>
-          </li>
+          </li> */}
         </TableContainer>
       </main>
     </TransactionsContainer>
