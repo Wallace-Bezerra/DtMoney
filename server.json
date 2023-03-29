@@ -4,7 +4,7 @@
       "id": 1,
       "description": "Desenvolvimento de Site",
       "type": "income",
-      "price": "R$ 12.000,00",
+      "price": 12000,
       "category": "Venda",
       "createdAt": "2023-02-27T23:59:34.498Z"
     },
@@ -12,7 +12,7 @@
       "id": 2,
       "description": "Hamburger",
       "type": "outcome",
-      "price": "R$ 18,00",
+      "price": 18,
       "category": "Alimentação",
       "createdAt": "2023-03-27T23:30:34.498Z"
     },
@@ -20,15 +20,23 @@
       "id": 3,
       "description": "Pizza",
       "type": "outcome",
-      "price": "R$ 35,00",
+      "price": 35,
       "category": "Alimentação",
       "createdAt": "2023-03-28T23:30:34.498Z"
     },
     {
-      "id": 2,
+      "id": 4,
       "description": "Comida",
       "type": "outcome",
-      "price": "R$ 17,00",
+      "price": 17,
+      "category": "Alimentação",
+      "createdAt": "2023-03-24T23:30:34.498Z"
+    },
+    {
+      "id": 5,
+      "description": "Comida",
+      "type": "outcome",
+      "price": 20,
       "category": "Alimentação",
       "createdAt": "2023-03-24T23:30:34.498Z"
     }
