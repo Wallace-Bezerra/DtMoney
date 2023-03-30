@@ -6,7 +6,6 @@ export const useSummary = () => {
 
   const summary = transactions.reduce(
     (acc, current) => {
-      console.log(acc);
       if (current.type === "income") {
         acc.income += current.price;
         acc.total = acc.income - acc.outcome;
