@@ -65,7 +65,7 @@ export const ButtonTransactionContainer = styled(RadioGroup.Root)`
   margin-bottom:30px;
 `;
 interface ButtonTransactionProps {
-  variant: "entry" | "output";
+  variant: "income" | "outcome";
 }
 export const ButtonTransaction = styled(RadioGroup.Item)<ButtonTransactionProps>`
   padding: 16px 24px;
@@ -80,7 +80,7 @@ export const ButtonTransaction = styled(RadioGroup.Item)<ButtonTransactionProps>
   svg {
     path {
       fill: ${({ theme, variant }) =>
-        variant === "entry" ? theme["green-300"] : theme["red-300"]};
+        variant === "income" ? theme["green-300"] : theme["red-300"]};
     }
   }
   span {
@@ -92,7 +92,7 @@ export const ButtonTransaction = styled(RadioGroup.Item)<ButtonTransactionProps>
 
   &[data-state="checked"] {
     background: ${({ theme, variant }) =>
-      variant === "entry" ? theme["green-700"] : theme["red-500"]};
+      variant === "income" ? theme["green-700"] : theme["red-500"]};
     span {
       color: white;
     }

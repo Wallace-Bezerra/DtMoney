@@ -10,6 +10,9 @@ import Close from "../../assets/Close.svg";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { Api } from "../../lib/axios";
+import { useContext } from "react";
+import { TransactionsContext } from "../../context/TransactionsContext";
 
 const newTransactionSchema = z.object({
   description: z.string(),
@@ -19,12 +22,24 @@ const newTransactionSchema = z.object({
 });
 type NewTransactionForm = z.infer<typeof newTransactionSchema>;
 
-export const NewTransactionModal = () => {
+interface NewTransactionModalProps {
+  setModalIsOpen: (arg0: boolean) => void;
+}
+export const NewTransactionModal = ({
+  setModalIsOpen,
+}: NewTransactionModalProps) => {
   const { register, handleSubmit, control } = useForm<NewTransactionForm>({
     resolver: zodResolver(newTransactionSchema),
   });
-  const handleNewTransaction = (data: NewTransactionForm) => {
+  const { setTransactions } = useContext(TransactionsContext);
+  const handleNewTransaction = async (data: NewTransactionForm) => {
     console.log(data);
+    const response = await Api.post("transactions", {
+      ...data,
+      createdAt: new Date().toISOString(),
+    });
+    setModalIsOpen(false);
+    setTransactions((prev) => [response.data, ...prev]);
   };
   return (
     <Dialog.Portal>
@@ -69,11 +84,13 @@ export const NewTransactionModal = () => {
               control={control}
               name="type"
               render={({ field }) => {
+                console.log(field);
                 return (
                   <ButtonTransactionContainer
-                    onValueChange={() => console.log("radio change")}
+                    onValueChange={field.onChange}
+                    value={field.value}
                   >
-                    <ButtonTransaction value="entry" variant="entry">
+                    <ButtonTransaction value="income" variant="income">
                       <svg
                         width="25"
                         height="24"
@@ -102,7 +119,7 @@ export const NewTransactionModal = () => {
                       </svg>
                       <span>Entrada</span>
                     </ButtonTransaction>
-                    <ButtonTransaction value="output" variant="output">
+                    <ButtonTransaction value="outcome" variant="outcome">
                       <svg
                         width="25"
                         height="24"

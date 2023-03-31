@@ -39,6 +39,38 @@
       "price": 20,
       "category": "Alimentação",
       "createdAt": "2023-03-24T23:30:34.498Z"
+    },
+    {
+      "description": "Aluguel",
+      "price": 1200,
+      "category": "Despesas",
+      "type": "outcome",
+      "createdAt": "2023-03-31T02:08:36.302Z",
+      "id": 6
+    },
+    {
+      "description": "game",
+      "price": 1111,
+      "category": "teste",
+      "type": "income",
+      "createdAt": "2023-03-31T03:41:43.803Z",
+      "id": 7
+    },
+    {
+      "description": "Nova Transação",
+      "price": 9999,
+      "category": "Teste",
+      "type": "outcome",
+      "createdAt": "2023-03-31T03:53:20.953Z",
+      "id": 8
+    },
+    {
+      "description": "ignite",
+      "price": 888,
+      "category": "Web",
+      "type": "outcome",
+      "createdAt": "2023-03-31T03:57:34.033Z",
+      "id": 9
     }
   ]
 }

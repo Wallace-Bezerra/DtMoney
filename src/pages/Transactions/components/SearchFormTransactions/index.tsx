@@ -2,18 +2,30 @@ import { useForm } from "react-hook-form";
 import { SearchForm } from "./styles";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { TransactionsContext } from "../../../../context/TransactionsContext";
+import { Api } from "../../../../lib/axios";
 const searchFormSchema = z.object({
   query: z.string(),
 });
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
 export const SearchFormTransactions = () => {
-  const { register, handleSubmit } = useForm<SearchFormInputs>({
+  const { register, handleSubmit, reset } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
+  const { setTransactions } = useContext(TransactionsContext);
 
-  const handleSearchTransactions = (data: SearchFormInputs) => {
-    console.log(data);
+  const handleSearchTransactions = async (data: SearchFormInputs) => {
+    reset({
+      query: "",
+    });
+    const response = await Api.get("transactions",{
+      params:{
+        q: data.query
+      }
+    });
+    setTransactions(response.data);
   };
   return (
     <SearchForm onSubmit={handleSubmit(handleSearchTransactions)}>
