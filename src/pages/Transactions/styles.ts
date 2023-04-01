@@ -9,6 +9,7 @@ export const TransactionsContainer = styled.div`
   margin: 0 auto;
   padding-top: 350px;
   padding-inline: 20px;
+  padding-bottom: 60px;
   .main {
     max-width: 1120px;
     width: 100%;

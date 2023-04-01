@@ -2,8 +2,8 @@ import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styles";
 import * as Dialog from "@radix-ui/react-dialog";
 import logo from "../../assets/Logo.svg";
 import { NewTransactionModal } from "../NewTransactionModal";
-import { useState } from "react";
-export const Header = () => {
+import { useState, memo } from "react";
+export const Header = memo(() => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <HeaderContainer>
@@ -18,4 +18,4 @@ export const Header = () => {
       </HeaderContent>
     </HeaderContainer>
   );
-};
+});

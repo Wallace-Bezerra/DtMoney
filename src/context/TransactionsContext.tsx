@@ -11,6 +11,8 @@ import { Api } from "../lib/axios";
 interface TransationsContextType {
   transactions: Transaction[];
   setTransactions: Dispatch<SetStateAction<Transaction[]>>;
+  error: boolean;
+  setError: Dispatch<SetStateAction<boolean>>;
 }
 export const TransactionsContext = createContext({} as TransationsContextType);
 
@@ -29,6 +31,7 @@ interface Transaction {
 
 export const TransacionsProvider = ({ children }: TransacionsProviderProps) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +54,12 @@ export const TransacionsProvider = ({ children }: TransacionsProviderProps) => {
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions: transactions, setTransactions: setTransactions }}
+      value={{
+        transactions,
+        setTransactions,
+        error,
+        setError,
+      }}
     >
       {children}
     </TransactionsContext.Provider>

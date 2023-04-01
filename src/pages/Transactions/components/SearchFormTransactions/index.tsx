@@ -14,17 +14,24 @@ export const SearchFormTransactions = () => {
   const { register, handleSubmit, reset } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
-  const { setTransactions } = useContext(TransactionsContext);
+  const { setTransactions, setError } = useContext(TransactionsContext);
 
   const handleSearchTransactions = async (data: SearchFormInputs) => {
     reset({
       query: "",
     });
-    const response = await Api.get("transactions",{
-      params:{
-        q: data.query
-      }
+    const response = await Api.get("transactions", {
+      params: {
+        q: data.query,
+        _sort: "createdAt",
+        _order: "desc",
+      },
     });
+    if (!response.data[0]) {
+      setError(true);
+    } else {
+      setError(false);
+    }
     setTransactions(response.data);
   };
   return (

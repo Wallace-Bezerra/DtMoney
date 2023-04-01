@@ -71,6 +71,14 @@
       "type": "outcome",
       "createdAt": "2023-03-31T03:57:34.033Z",
       "id": 9
+    },
+    {
+      "description": "carro",
+      "price": 999999,
+      "category": "carros",
+      "type": "outcome",
+      "createdAt": "2023-04-01T03:26:18.203Z",
+      "id": 10
     }
   ]
 }

@@ -10,7 +10,9 @@ import {
 } from "./styles";
 
 export const Transactions = () => {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions, error } = useContext(TransactionsContext);
+  console.log(transactions[0]);
+  console.log(transactions);
 
   return (
     <TransactionsContainer>
@@ -19,6 +21,8 @@ export const Transactions = () => {
       <main className="main">
         <SearchFormTransactions />
         <TableContainer className="grid">
+          {error && <span>Não foi encontrado!</span>}
+
           {transactions.map((transaction) => {
             return (
               <li key={transaction.id} className="item">
